@@ -60,7 +60,7 @@ subplot(221);
 plot(t1,x_pb);
 xlabel('Time(s)');
 ylabel('Amp.');
-title('时域信号（原理方法）');
+title('时域信号（定义）');
 
 figure(10);
 subplot(222);
@@ -70,7 +70,7 @@ f1 = (0:1:nfft/2-1)*fs/nfft;
 plot(f1,abs(X_pb(1:nfft/2)));
 xlabel('频率(Hz)');
 ylabel('Amp.');
-title('频域（原理方法）');
+title('频域（定义）');
 
 %% DFT实现
 NFFT = N; % FFT点数，等于子载波数
@@ -86,7 +86,7 @@ subplot(223);
 plot(t2,x_pb_DFT);
 xlabel('Time(s)');
 ylabel('Amp.');
-title('时域信号（DFT法）');
+title('时域信号（DFT实现）');
 
 nfft = 2^nextpow2(length(x_pb_DFT));
 X_pb_DFT = fft(x_pb_DFT,nfft)*2/length(x_pb_DFT);
@@ -97,7 +97,7 @@ subplot(224);
 plot(f2,abs(X_pb_DFT(1:nfft/2)));
 xlabel('频率(Hz)');
 ylabel('Amp.');
-title('频域（DFT法）');
+title('频域（DFT实现）');
 
 
 
