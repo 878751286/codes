@@ -21,13 +21,17 @@ B = N/T_OFDM ; % 信号带宽
 sps = fs/B;
 
 %生成信息序列
-data = randi([0,1],1,N_data);%K0个子载波上要发射的信号
-data = 2*data -1; % 变成1或者-1，虽然不知道为啥
+% infobits = randi([0,1],1,N_data);%K0个子载波上要发射的信号
+% save ./mat_data/infobits.mat infobits;
+load ./mat_data/infobits.mat infobits;
+data = infobits;
+data = 2*data-1; % 变成1或者-1，虽然不知道为啥
 
 alpha = 0.7;
 span = 6; % 截断符号范围 
 hrc = rcosdesign(alpha,span,1); % 升余弦滚降滤波器
 hrc_order = length(hrc)-1; % 滚降滤波器阶数
+
 
 %% 常规方法生成OFDM信号
 % 复基带信号
@@ -40,8 +44,8 @@ end
 % 载波信号
 t1 = 0:1/fs:T_OFDM-1/fs;	% 一个符号周期的时间矢量
 carrier  = zeros(N,length(t1));
-for k = 1:N
-	carrier(k,:)  = exp(1j*2*pi*fsig(k)*t1);
+for k = 1:1:N
+	carrier(k,:) = exp(1i*2*pi*fsig(k)*t1);
 end
 
 % 加窗
