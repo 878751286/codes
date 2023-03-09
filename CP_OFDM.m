@@ -64,7 +64,7 @@ title('频谱分析');xlabel('\bf Freq(Hz)');ylabel('\bf Amplitude(V)');
 %%  ==================  IFFT方法  ================================
 ifft_ofdm = ifft(data_win,N_data);% IFFT变换
 ifft_cp = ifft_ofdm(end-N_cp+1:end);% 插入循环前缀
-ifft_cp_ofdm =[cp ofdm ofdm]; % 组帧
+ifft_cp_ofdm =[ifft_cp ifft_ofdm ifft_ofdm]; % 组帧
 
 % 乘载波，进行通带调制
 t2 = (0:length(ifft_cp_ofdm)-1)/fs;% 时间轴按照点数来
